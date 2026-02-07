@@ -30,10 +30,33 @@
                 <a class = "nav-item nav-link" id = "login" href = "/login">Login</a>
                 <a class = "nav-item nav-link" id = "signUp" href = "/sign-up">Sign Up</a>
                 <a class = "nav-item nav-link" id = "logout" href = "/logout">Logout</a>
-                <a class = "nav-item nav-link" id = "home" href = "/home">Home</a>
+                <a class = "nav-item nav-link" id = "home" href = "/">Home</a>
               </div>
             </div>
         </nav>
+        <!-- OUR ERROR/SUCCESS MESSAGES -->
+        {% with messages = get_flashed_messages(with_categories = true) %}
+        {% if messages  %}
+          {% for category, message in messages %}
+          {%if category == 'error' %}
+          <div class ="alert alert-danger alter-dismissable fade show" role = "alert">
+            {{message}}
+            <button type ="button" class = "close" data-dismiss = "alert">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          {% else %}<!-- If its not an error lets show a success message box-->
+          <div class ="alert alert-success alter-dismissable fade show" role = "alert">
+            {{message}}
+            <button type ="button" class = "close" data-dismiss = "alert">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          {% endif %}
+          {% endfor %}
+        {% endif %}
+        {% endwith %}
+
         <div class = "container">
           {%block content %} <!-- remember i can override this on other pages -->
           {% endblock %}
