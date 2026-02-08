@@ -11,7 +11,7 @@ from sqlalchemy.sql import func
 class Note(db.Model):
     id = db.Column(db.Integer, primary_key = True)#db software sets uniques ID, usually + 1 
     data = db.Column(db.String(10000))
-    date = db.Column(db.DateTime(timezone = True), default = func.now )#func.now gets current DT
+    date = db.Column(db.DateTime(timezone = True), default = func.now() )#func.now gets current DT
     
     #How to associate this note for the user:
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
